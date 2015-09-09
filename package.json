@@ -1,0 +1,15 @@
+{
+  "name": "AnimalListDemo",
+  "version": "0.0.1",
+  "description": "Gulp Live Reload Browser",
+  "scripts": {
+    "startGulp": "gulp"
+  },
+  "author": "Sandeep",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-livereload": "^3.8.0",
+    "gulp-sass": "^2.0.4"
+  }
+}
