@@ -1,17 +1,19 @@
 var gulp = require('gulp'),
     gulpSass = require('gulp-sass'),
-    liveReload = require('gulp-livereload');
-
+    connect = require('gulp-connect');
+gulp.task('connect', function() {
+   return connect.server({
+        port:8080,
+        livereload:true
+    });
+});
 gulp.task('liverReloadSassTask', function () {
-    gulp.src('./dev/*.scss')
+   return gulp.src('./dev/*.scss')
         .pipe(gulpSass().on('error', gulpSass.logError))
         .pipe(gulp.dest('./dist'))
-        .pipe(liveReload());
-})
-
-gulp.task('liverReloadSassWatchTask', function () {
-    liveReload.listen();
-    gulp.watch('./*.scss', ['liverReloadsassTask']);
+        .pipe(connect.reload());
 });
-
-gulp.task('default',['liverReloadSassTask','liverReloadSassWatchTask']);
+gulp.task('liverReloadSassWatchTask', function () {
+    gulp.watch('./dev/*.scss', ['liverReloadSassTask']);
+});
+gulp.task('default',['connect','liverReloadSassTask','liverReloadSassWatchTask']);
